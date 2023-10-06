@@ -17,7 +17,6 @@ public class UserService {
 
     public BsonValue registerUser(String firstName, String lastName, String email, String password) {
         MongoClient mongoClient = MongoDBConnectionManager.getMongoClient();
-
         // Get the database and collection (replace "your-database-name" and "users" with your actual names)
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);

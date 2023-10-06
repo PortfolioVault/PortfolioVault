@@ -5,16 +5,31 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
     <title>Sign Up</title>
+    <link rel="stylesheet" href="styles/signup-styles.css"/>
 </head>
 <body>
-<h1>Sign Up</h1>
-<h:form>
-    <h:inputText value="#{signupBean.firstName}" placeholder="First Name" /><br/>
-    <h:inputText value="#{signupBean.lastName}" placeholder="Last Name" /><br/>
-    <h:inputText value="#{signupBean.email}" placeholder="Email" /><br/>
-    <h:inputSecret value="#{signupBean.password}" placeholder="Password" /><br/>
+<h1 class="signup-heading">Sign Up</h1>
+<div class="form-container">
+<h:form styleClass="form">
+    <div class="form-control">
+        <label for="firstName">First Name</label>
+        <h:inputText id="firstName" value="#{signupBean.firstName}" placeholder="First Name" />
+    </div>
+    <div class="form-control">
+        <label for="lastName">Last Name</label>
+        <h:inputText id="lastName" value="#{signupBean.lastName}" placeholder="Last Name" />
+    </div>
+    <div class="form-control">
+        <label for="email">Email</label>
+        <h:inputText id="email" value="#{signupBean.email}" placeholder="Email" />
+    </div>
+    <div class="form-control">
+        <label for="password">Password</label>
+        <h:inputSecret id="password" value="#{signupBean.password}" placeholder="Password" />
+    </div>
     <h:commandButton value="Sign Up" action="#{signupBean.signup}" />
 </h:form>
+</div>
 </body>
 </html>
 

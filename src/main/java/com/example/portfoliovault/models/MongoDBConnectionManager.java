@@ -1,11 +1,7 @@
 package com.example.portfoliovault.models;
-import com.mongodb.client.MongoClient;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.ServerAddress;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.internal.MongoClientImpl;
 
-import java.util.Arrays;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 
 public class MongoDBConnectionManager {
     private static String CONNECTION_URI = "mongodb://localhost:27017";
