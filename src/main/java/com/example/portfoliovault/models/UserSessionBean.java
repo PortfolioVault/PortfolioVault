@@ -5,6 +5,7 @@ import jakarta.inject.Named;
 import org.bson.BsonValue;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 @Named
 @SessionScoped
@@ -13,6 +14,8 @@ public class UserSessionBean implements Serializable {
     private String lastName;
     private String email;
     private BsonValue userId;
+    private LinkedList<Education> educations;
+    private LinkedList<Experience> experiences;
 
     public BsonValue getUserId() {
         return userId;

@@ -59,16 +59,14 @@ public class SignupBean implements Serializable {
 
     public String signup() {
 
-        // Call the UserService to register the user in the database
         BsonValue userId = userService.registerUser(firstName, lastName, email, password);
         userSession.setUserId(userId);
         userSession.setEmail(email);
         userSession.setFirstName(firstName);
         userSession.setLastName(lastName);
-        return "success"; // Specify the navigation outcome to a success page
+        return "home"; // Specify the navigation outcome to a success page
     }
 
-    // Getter and setter methods for other properties
 
     public void setUserService(UserService userService) {
         this.userService = userService;
