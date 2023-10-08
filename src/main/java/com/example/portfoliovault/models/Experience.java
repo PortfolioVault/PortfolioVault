@@ -1,6 +1,12 @@
 package com.example.portfoliovault.models;
 
-public class Experience {
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
+import org.bson.Document;
+
+import java.io.Serializable;
+
+public class Experience implements Serializable {
     private String startDate;
     private String endDate;
     private String company;
@@ -43,5 +49,13 @@ public class Experience {
         this.endDate = endDate;
         this.company = company;
         this.role = role;
+    }
+    public Document toDocument() {
+        Document document = new Document();
+        document.append("startDate", this.startDate);
+        document.append("endDate", this.endDate);
+        document.append("company", this.company);
+        document.append("role", this.role);
+        return document;
     }
 }

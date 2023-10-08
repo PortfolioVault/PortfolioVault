@@ -3,10 +3,23 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:outputText value="Welcome, #{userSessionBean.firstName} #{userSessionBean.lastName}!" />
     <p>Your email: #{userSessionBean.email}</p>
+    <c:if test="#{not empty userSessionBean.experiences}">
+        <h:outputText value="Expériences ajoutées : " />
+        <ul>
+            <ui:repeat value="#{userSessionBean.experiences}" var="experience">
+                <li>
+                    Date de début : #{experience.startDate}, Date de fin : #{experience.endDate},
+                    Entreprise : #{experience.company}, Rôle : #{experience.role}
+                </li>
+            </ui:repeat>
+        </ul>
+    </c:if>
+    <h:outputLink value="addExperience.xhtml">Ajouter une expérience</h:outputLink>
 </f:view>
 </html>
