@@ -6,6 +6,7 @@ import org.bson.BsonValue;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 @Named
 @SessionScoped
@@ -48,4 +49,21 @@ public class UserSessionBean implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public LinkedList<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(LinkedList<Education> educations) {
+        this.educations = educations;
+    }
+
+    public LinkedList<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(LinkedList<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
 }
