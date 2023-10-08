@@ -1,5 +1,7 @@
 package com.example.portfoliovault.models;
 
+import org.bson.Document;
+
 public class Experience {
     private String startDate;
     private String endDate;
@@ -43,5 +45,14 @@ public class Experience {
         this.endDate = endDate;
         this.company = company;
         this.role = role;
+    }
+
+    public Document toDocument() {
+        Document document = new Document();
+        document.append("startDate", this.startDate);
+        document.append("endDate", this.endDate);
+        document.append("company", this.company);
+        document.append("role", this.role);
+        return document;
     }
 }
