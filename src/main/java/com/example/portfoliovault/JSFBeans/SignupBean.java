@@ -60,7 +60,7 @@ public class SignupBean implements Serializable {
     public String signup() {
 
         BsonValue userId = userService.registerUser(firstName, lastName, email, password);
-        userSession.setUserId(userId);
+        userSession.setUserId(userId.toString());
         userSession.setEmail(email);
         userSession.setFirstName(firstName);
         userSession.setLastName(lastName);

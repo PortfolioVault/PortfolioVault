@@ -10,5 +10,14 @@
             <to-view-id>/home.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addEducation</from-outcome>
+            <to-view-id>/EducationForm.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
 
 </faces-config>

@@ -4,6 +4,7 @@ public class Education {
     private String diplomat;
     private String university;
     private String yearOfObtention;
+    private String idUser;
 
     public String getDiplomat() {
         return diplomat;
@@ -29,9 +30,19 @@ public class Education {
         this.yearOfObtention = yearOfObtention;
     }
 
-    public Education(String diplomat, String university, String yearOfObtention) {
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public Education(String idUser, String diplomat, String university, String yearOfObtention) {
         this.diplomat = diplomat;
         this.university = university;
         this.yearOfObtention = yearOfObtention;
+        this.idUser=idUser;
     }
+
 }

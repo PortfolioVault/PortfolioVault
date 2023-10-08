@@ -1,0 +1,22 @@
+body{
+    font-family: "Roboto", sans-serif;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.user-info {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.education {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
