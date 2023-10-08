@@ -4,11 +4,14 @@ import com.example.portfoliovault.models.Education;
 import com.example.portfoliovault.models.UserSessionBean;
 import com.example.portfoliovault.services.EducationService;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.bson.BsonValue;
 
 import javax.validation.constraints.Size;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -48,13 +51,29 @@ public class EducationBean  implements Serializable {
         // Ajoutez la nouvelle éducation à la liste des éducations de l'utilisateur
         userSession.setEducations(newEducation);
 
-        return "home"; // Spécifiez la navigation vers la page de réussite.
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        try{
+            externalContext.redirect(externalContext.getRequestContextPath() + "/home.xhtml");
+        }catch(
+                IOException e){
+            e.printStackTrace();
+        }
+        return null; // Specify the navigation outcome to a success page
+
     }
 
 
-
     public String toAddEducation() {
-        return "addEducation";
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        try{
+            externalContext.redirect(externalContext.getRequestContextPath() + "/EducationForm.xhtml");
+        }catch(
+                IOException e){
+            e.printStackTrace();
+        }
+        return null; // Specify the navigation outcome to a success page
     }
 
 

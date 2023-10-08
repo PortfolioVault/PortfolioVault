@@ -2,10 +2,13 @@ package com.example.portfoliovault.JSFBeans;
 import com.example.portfoliovault.models.UserSessionBean;
 import com.example.portfoliovault.services.UserService;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.bson.BsonValue;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 
@@ -57,6 +60,7 @@ public class SignupBean implements Serializable {
     @Inject
     private UserSessionBean userSession;
 
+
     public String signup() {
 
         BsonValue userId = userService.registerUser(firstName, lastName, email, password);
@@ -64,9 +68,15 @@ public class SignupBean implements Serializable {
         userSession.setEmail(email);
         userSession.setFirstName(firstName);
         userSession.setLastName(lastName);
-        return "home"; // Specify the navigation outcome to a success page
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        try{
+            externalContext.redirect(externalContext.getRequestContextPath() + "/home.xhtml");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return null; // Specify the navigation outcome to a success page
     }
-
 
     public void setUserService(UserService userService) {
         this.userService = userService;
