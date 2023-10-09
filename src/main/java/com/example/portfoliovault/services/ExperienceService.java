@@ -6,10 +6,13 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import org.bson.BsonValue;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -23,25 +26,19 @@ public class ExperienceService {
     private static String DB_NAME = "PortfolioVault";
     private static String COLLECTION_NAME = "portfolios";
 
-    public void addExperience(BsonValue userId, LinkedList<Experience> experiences) {
+    public void addExperience(BsonValue userId, Experience experience) {
 
         MongoClient mongoClient = MongoDBConnectionManager.getMongoClient();
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
 
-        //1st Methode
         MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
 
-        // Create a document with experiences and update the user document
-        List<Document> experienceDocuments = new ArrayList<>();
-        for (Experience experience : experiences) {
-            experienceDocuments.add(experience.toDocument());
-        }
-
-        // Create an update query to add experiences to the user document
-        Document updateQuery = new Document("$push", new Document("experiences", new Document("$each", experienceDocuments)));
+        Document lastExperience = experience.toDocument();
+        Bson filter = Filters.eq("_id", userId);
+        Bson update = Updates.addToSet("experiences", lastExperience);
+        UpdateOptions options = new UpdateOptions().upsert(true);
 
         // Update the user document based on the userId
-        collection.updateOne(Filters.eq("_id", userId), updateQuery);
-
+        collection.updateOne(filter, update, options);
     }
 }

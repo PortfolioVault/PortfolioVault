@@ -37,11 +37,11 @@ public class UserService {
         MongoClient client = MongoDBConnectionManager.getMongoClient();
         MongoDatabase database = client.getDatabase("PortfolioVault");
         MongoCollection<Document> collection = database.getCollection("portfolios");
-        Document document = new Document("$set",new Document().append("professionalTitle",professionalTitle)
+        Document document = new Document("$set",new Document()
+                .append("professionalTitle",professionalTitle)
                 .append("phoneNumber",phoneNumber)
                 .append("address",address)
                 .append("age",age));
-        collection.updateOne(Filters.eq("id",userId),document);
-
+        collection.updateOne(Filters.eq("_id",userId),document);
     }
 }

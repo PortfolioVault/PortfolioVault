@@ -68,7 +68,7 @@ public class ExperienceBean implements Serializable {
             userSession.setExperiences(experiences);
         }
         //ajouter les données dans la database
-        experienceService.addExperience(userSession.getUserId(), experiences);
+        experienceService.addExperience(userSession.getUserId(), experience);
         //ajouter les données de la session
         experiences.add(experience);
         //redirection
