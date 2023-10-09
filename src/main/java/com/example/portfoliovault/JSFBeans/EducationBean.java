@@ -55,6 +55,9 @@ public class EducationBean  implements Serializable {
                 IOException e){
             e.printStackTrace();
         }
+        diplomat = "";
+        yearOfObtention = "";
+        university = "";
         return null;
     }
 
