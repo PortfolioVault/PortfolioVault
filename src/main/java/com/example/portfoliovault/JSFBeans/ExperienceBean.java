@@ -79,6 +79,10 @@ public class ExperienceBean implements Serializable {
         }catch(IOException e){
             e.printStackTrace();
         }
+        startDate = "";
+        endDate = "";
+        company = "";
+        role = "";
         return null;
     }
 }

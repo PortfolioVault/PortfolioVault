@@ -3,6 +3,7 @@ package com.example.portfoliovault.JSFBeans;
 
 import com.example.portfoliovault.models.MongoDBConnectionManager;
 import com.example.portfoliovault.models.UserSessionBean;
+import com.example.portfoliovault.services.UserService;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -24,6 +25,8 @@ import java.io.Serializable;
 public class HomePageBean implements Serializable {
     @Inject
     private UserSessionBean userSession;
+    @Inject
+    private UserService userService;
     private String firstName;
     private String lastName;
     private String email;
@@ -101,14 +104,7 @@ public class HomePageBean implements Serializable {
         userSession.setAddress(address);
         userSession.setPhoneNumber(phoneNumber);
         userSession.setAge(age);
-        MongoClient client = MongoDBConnectionManager.getMongoClient();
-        MongoDatabase database = client.getDatabase("PortfolioVault");
-        MongoCollection<Document> collection = database.getCollection("portfolios");
-        Document document = new Document("$set",new Document().append("professionalTitle",professionalTitle)
-                .append("phoneNumber",phoneNumber)
-                .append("address",address)
-                .append("age",age));
-        collection.updateOne(Filters.eq("id",userSession.getUserId()),document);
+        userService.savePersonalInfos(userSession.getUserId(), phoneNumber,age,professionalTitle,address);
         FacesContext context = FacesContext.getCurrentInstance();
         FacesMessage message = new FacesMessage("Success!", "Details Saved successfully");
         context.addMessage(null, message);

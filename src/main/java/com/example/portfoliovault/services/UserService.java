@@ -3,6 +3,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.example.portfoliovault.models.MongoDBConnectionManager;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
@@ -30,5 +31,17 @@ public class UserService {
 
         InsertOneResult result = collection.insertOne(userDocument);
         return result.getInsertedId();
+    }
+
+    public void savePersonalInfos(BsonValue userId,String phoneNumber,String age, String professionalTitle,String address){
+        MongoClient client = MongoDBConnectionManager.getMongoClient();
+        MongoDatabase database = client.getDatabase("PortfolioVault");
+        MongoCollection<Document> collection = database.getCollection("portfolios");
+        Document document = new Document("$set",new Document().append("professionalTitle",professionalTitle)
+                .append("phoneNumber",phoneNumber)
+                .append("address",address)
+                .append("age",age));
+        collection.updateOne(Filters.eq("id",userId),document);
+
     }
 }
